@@ -1,3 +1,5 @@
+<img src="/assets/images/logo-no-background.png" alt="Logo" width="200"/>
+
 # This repository contains the code used in the videos uploaded on YouTube channel:
 [CleanCodeCamp YouTube Channel](https://www.youtube.com/@CleanCodeCamp)
 
