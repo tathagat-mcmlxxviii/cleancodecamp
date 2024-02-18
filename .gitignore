@@ -25,3 +25,7 @@ replay_pid*
 
 # Apple Mac
 .DS_Store
+
+# eclipse project files
+.classpath
+.project
