@@ -1,0 +1,9 @@
+= Implementation of Integrated library system
+
+== Description
+
+This project will implement an ILS as defined at https://en.wikipedia.org/wiki/Integrated_library_system[Wikipedia article on IILS]
+
+== Architecture
+
+This is a monolith

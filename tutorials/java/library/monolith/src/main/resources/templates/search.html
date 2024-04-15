@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <form th:action="@{/search}" method="get">
+        <label for="searchString">Search:</label>
+        <input type="text" id="searchString" name="searchString">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Display search results -->
+    <div th:if="${searchResult}">
+        <h2>Search Results</h2>
+        <ul>
+            <li th:each="result : ${searchResult}">
+                <span th:text="${result.title}"></span> by <span th:text="${result.author}"></span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
