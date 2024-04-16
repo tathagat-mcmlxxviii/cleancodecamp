@@ -39,7 +39,7 @@ public class SearchServiceTest {
 
         // When
         when(bookRepository.findByTitleContainingIgnoreCase(anyString())).thenReturn(repositoryAnswer);
-        List<BookDM> actualBooks = searchService.searchByBookName("Book");
+        List<BookDM> actualBooks = searchService.search("Book");
 
         // Then
         assertEquals(expectedBooks, actualBooks);

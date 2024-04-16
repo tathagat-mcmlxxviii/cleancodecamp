@@ -49,8 +49,7 @@ public class SearchControllerTest {
 		// given
 		BookDM book1 = new BookDM(1L, "Book 1", "ISBN-1", "Author 1", "Genre 1", "Publisher 1");
 		BookDM book2 = new BookDM(2L, "Book 2", "ISBN-2", "Author 2", "Genre 2", "Publisher 2");
-		when(searchService.searchByAuthor(anyString())).thenReturn(Arrays.asList(book1));
-		when(searchService.searchByBookName(anyString())).thenReturn(Arrays.asList(book2));
+		when(searchService.search(anyString())).thenReturn(Arrays.asList(book1, book2));
 		
 		// when
 		MvcResult result = this.mockMvc.perform(get("/search?searchString=xyz"))

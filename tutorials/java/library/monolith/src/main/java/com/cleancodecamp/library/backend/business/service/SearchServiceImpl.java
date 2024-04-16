@@ -1,5 +1,6 @@
 package com.cleancodecamp.library.backend.business.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,16 @@ public class SearchServiceImpl implements SearchService {
     private BookRepository bookRepository;
 
     @Override
-    public List<BookDM> searchByBookName(String bookName) {
-        return mapPmToDm(bookRepository.findByTitleContainingIgnoreCase(bookName));
+    public List<BookDM> search(String searchString) {
+    	List<BookDM> books = new ArrayList<>();
+    	
+    	books.addAll(mapPmToDm(bookRepository.findByTitleContainingIgnoreCase(searchString)));
+    	books.addAll(mapPmToDm(bookRepository.findByIsinContainingIgnoreCase(searchString)));
+    	books.addAll(mapPmToDm(bookRepository.findByAuthorNameContainingIgnoreCase(searchString)));
+    	books.addAll(mapPmToDm(bookRepository.findByPublisherNameContainingIgnoreCase(searchString)));
+    	books.addAll(mapPmToDm(bookRepository.findByGenreNameContainingIgnoreCase(searchString)));
+    	
+        return getUniqueSearchResults(books);
     }
 
     private List<BookDM> mapPmToDm(List<BookPM> byTitleContainingIgnoreCase) {
@@ -26,24 +35,10 @@ public class SearchServiceImpl implements SearchService {
 				.map(p -> BookDM.mapPmToDm(p))
 				.collect(Collectors.toList());
 	}
-
-	@Override
-    public List<BookDM> searchByISBN(String isbn) {
-        return mapPmToDm(bookRepository.findByIsinContainingIgnoreCase(isbn));
-    }
-
-    @Override
-    public List<BookDM> searchByAuthor(String authorName) {
-        return mapPmToDm(bookRepository.findByAuthorNameContainingIgnoreCase(authorName));
-    }
-
-    @Override
-    public List<BookDM> searchByPublisher(String publisherName) {
-        return mapPmToDm(bookRepository.findByPublisherNameContainingIgnoreCase(publisherName));
-    }
-
-    @Override
-    public List<BookDM> searchByGenre(String genreName) {
-        return mapPmToDm(bookRepository.findByGenreNameContainingIgnoreCase(genreName));
+    
+    private List<BookDM> getUniqueSearchResults(List<BookDM> searchResults) {
+        return searchResults.stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

@@ -31,17 +31,12 @@ public class SearchControllerImpl implements SearchController {
         List<BookDM> books = new ArrayList<>();
 
         if (StringUtils.isNotBlank(searchString)) {
-            books.addAll(searchService.searchByBookName(searchString));
-            books.addAll(searchService.searchByISBN(searchString));
-            books.addAll(searchService.searchByAuthor(searchString));
-            books.addAll(searchService.searchByPublisher(searchString));
-            books.addAll(searchService.searchByGenre(searchString));
+            books.addAll(searchService.search(searchString));
         }
 
         List<SearchResult> searchResults = mapToSearchResults(books);
-        List<SearchResult> uniqueSearchResults = getUniqueSearchResults(searchResults);
         
-        model.addAttribute("searchResult", uniqueSearchResults);
+        model.addAttribute("searchResult", searchResults);
         
         return "search";
     }
@@ -59,10 +54,6 @@ public class SearchControllerImpl implements SearchController {
                 .collect(Collectors.toList());
     }
 
-    private List<SearchResult> getUniqueSearchResults(List<SearchResult> searchResults) {
-        return searchResults.stream()
-                .distinct()
-                .collect(Collectors.toList());
-    }
+    
 }
 

@@ -25,11 +25,9 @@ public class SearchServiceTestIT {
     @Sql({"/data/data-test.sql"})
     public void testSearchByBookName() {
         // When
-        List<BookDM> actualBooks = searchService.searchByBookName("Book");
+        List<BookDM> actualBooks = searchService.search("Book");
 
         // Then
         assertEquals(2, actualBooks.size());
     }
-
-    // Similar tests for other search methods like searchByISBN, searchByAuthor, searchByPublisher, searchByGenre
 }
