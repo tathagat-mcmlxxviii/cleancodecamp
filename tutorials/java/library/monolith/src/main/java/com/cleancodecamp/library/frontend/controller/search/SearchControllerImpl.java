@@ -13,6 +13,8 @@ import com.cleancodecamp.library.backend.business.model.BookDM;
 import com.cleancodecamp.library.backend.business.service.SearchService;
 import com.cleancodecamp.library.frontend.controller.search.model.SearchResult;
 
+import io.micrometer.common.util.StringUtils;
+
 @Controller
 public class SearchControllerImpl implements SearchController {
 
@@ -28,7 +30,7 @@ public class SearchControllerImpl implements SearchController {
     public String search(@RequestParam(required = false) String searchString, Model model) {
         List<BookDM> books = new ArrayList<>();
 
-        if (searchString != null && !searchString.isEmpty()) {
+        if (StringUtils.isNotBlank(searchString)) {
             books.addAll(searchService.searchByBookName(searchString));
             books.addAll(searchService.searchByISBN(searchString));
             books.addAll(searchService.searchByAuthor(searchString));
