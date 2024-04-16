@@ -24,6 +24,7 @@ public class SearchControllerImpl implements SearchController {
 	}
 
 	@GetMapping("/search")
+	@Override
     public String search(@RequestParam(required = false) String searchString, Model model) {
         List<BookDM> books = new ArrayList<>();
 
