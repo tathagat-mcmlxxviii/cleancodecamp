@@ -50,7 +50,7 @@ public class ReservationRepositoryTest {
         BookPM book = new BookPM(null, "The Great Gatsby", "9780141182636", author, genre, publisher);
         book = bookRepository.save(book);
 
-        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789"));
+        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789", "xyz1"));
         LocalDateTime reservationDate = LocalDateTime.now();
 
         ReservationPM reservation = new ReservationPM(null, patron, book, reservationDate);
@@ -77,7 +77,7 @@ public class ReservationRepositoryTest {
         BookPM book = new BookPM(null, "The Great Gatsby", "9780141182636", author, genre, publisher);
         book = bookRepository.save(book);
 
-        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789"));
+        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789", "xyz1"));
         LocalDateTime reservationDate = LocalDateTime.now();
 
         reservationRepository.save(new ReservationPM(null, patron, book, reservationDate));

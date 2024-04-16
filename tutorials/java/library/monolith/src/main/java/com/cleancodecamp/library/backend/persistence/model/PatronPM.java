@@ -25,4 +25,6 @@ public class PatronPM {
     private String email;
     @NonNull
     private String phoneNumber;
+    @NonNull
+    private String libraryCardId; // alphanumeric. unique.
 }
