@@ -7,5 +7,5 @@ public interface CoffeeService {
 	 * 2. Put the powder in the machine and start
 	 * @param numberOfCoffees - number of coffees to be brewed
 	 */
-	void brewCoffee(int numberOfCoffees);
+	void brewCoffee(int numberOfCoffees) throws Exception;
 }

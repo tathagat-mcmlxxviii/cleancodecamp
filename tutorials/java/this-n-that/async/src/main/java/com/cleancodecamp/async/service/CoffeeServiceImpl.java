@@ -1,5 +1,7 @@
 package com.cleancodecamp.async.service;
 
+import java.util.concurrent.CompletableFuture;
+
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,17 +21,26 @@ public class CoffeeServiceImpl implements CoffeeService {
 	}
 
 	@Override
-	public void brewCoffee(int numberOfCoffees) {
+	public void brewCoffee(int numberOfCoffees) throws Exception {
 		long startTime = System.currentTimeMillis();
+		String coffeePowder = coffeeGrinderService.grindCoffeeBeans().get();
 		for (int i = 1; i <= numberOfCoffees; i++) {
 			log.info("Starting number {} coffee", i);
-			String coffeePowder = coffeeGrinderService.grindCoffeeBeans();
-			coffeeMachineService.makeCoffee(coffeePowder);
+			coffeePowder = makeCoffeeAndAtTheSameTimeGrindBeansForTheNext(coffeePowder);
 		}
 		long endTime = System.currentTimeMillis();
 		
 		log.info("Took {} seconds to brew {} coffees",
 		 (endTime-startTime)/1000,numberOfCoffees);
+	}
+	
+	private String makeCoffeeAndAtTheSameTimeGrindBeansForTheNext(String coffeePowder) throws Exception {
+		CompletableFuture<Void> coffee = coffeeMachineService.makeCoffee(coffeePowder);
+		CompletableFuture<String> powder = coffeeGrinderService.grindCoffeeBeans();
+		
+		CompletableFuture.allOf(coffee, powder);
+		
+		return powder.get();
 	}
 	
 }

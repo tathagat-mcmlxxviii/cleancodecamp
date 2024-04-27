@@ -1,5 +1,10 @@
 package com.cleancodecamp.async.service;
 
+import java.util.concurrent.CompletableFuture;
+
+import org.springframework.scheduling.annotation.Async;
+
 public interface CoffeeGrinderService {
-	String grindCoffeeBeans();
+	@Async
+	CompletableFuture<String> grindCoffeeBeans();
 }

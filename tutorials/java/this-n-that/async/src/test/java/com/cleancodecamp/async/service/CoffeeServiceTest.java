@@ -17,7 +17,7 @@ public class CoffeeServiceTest {
 	}
 	
 	@Test
-	public void testBrewCoffee() {
+	public void testBrewCoffee() throws Exception {
 		// given
 		int numberOfCoffees = 10;
 		
