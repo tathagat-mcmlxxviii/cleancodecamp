@@ -43,7 +43,7 @@ public class LoanRepositoryTest {
     @Test
     public void testSaveLoan() {
         // Given
-        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789", "xyz1"));
+        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789"));
         AuthorPM author = new AuthorPM(null, "F. Scott Fitzgerald");
         GenrePM genre = new GenrePM(null, "Fiction");
         PublisherPM publisher = new PublisherPM(null, "Penguin Books");
@@ -69,7 +69,7 @@ public class LoanRepositoryTest {
     @Test
     public void testFindAllLoans() {
         // Given
-        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789", "xyz1"));
+        PatronPM patron = patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789"));
         AuthorPM author = authorRepository.save(new AuthorPM(null, "F. Scott Fitzgerald"));
         GenrePM genre = genreRepository.save(new GenrePM(null, "Fiction"));
         PublisherPM publisher = publisherRepository.save(new PublisherPM(null, "Penguin Books"));

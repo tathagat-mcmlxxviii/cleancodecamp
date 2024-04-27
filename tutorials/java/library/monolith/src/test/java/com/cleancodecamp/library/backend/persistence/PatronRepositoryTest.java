@@ -23,7 +23,7 @@ public class PatronRepositoryTest {
     @Test
     public void testSavePatron() {
         // Given
-        PatronPM patron = new PatronPM(null, "John Doe", "john@example.com", "123456789", "xyz1");
+        PatronPM patron = new PatronPM(null, "John Doe", "john@example.com", "123456789");
 
         // When
         PatronPM savedPatron = patronRepository.save(patron);
@@ -40,8 +40,8 @@ public class PatronRepositoryTest {
     @Test
     public void testFindAllPatrons() {
         // Given
-        patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789", "xyz1"));
-        patronRepository.save(new PatronPM(null, "Jane Doe", "jane@example.com", "987654321", "xyz2"));
+        patronRepository.save(new PatronPM(null, "John Doe", "john@example.com", "123456789"));
+        patronRepository.save(new PatronPM(null, "Jane Doe", "jane@example.com", "987654321"));
 
         // When
         List<PatronPM> patrons = patronRepository.findAll();
