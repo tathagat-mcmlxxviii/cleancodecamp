@@ -13,11 +13,14 @@ public class CoffeeServiceImpl implements CoffeeService {
 	private CoffeeGrinderService coffeeGrinderService;
 	
 	private CoffeeMachineService coffeeMachineService;
+
+	private DishwasherService dishwasherService;
 	
-	public CoffeeServiceImpl(CoffeeGrinderService coffeeGrinderService, CoffeeMachineService coffeeMachineService) {
+	public CoffeeServiceImpl(DishwasherService dishwasherService, CoffeeGrinderService coffeeGrinderService, CoffeeMachineService coffeeMachineService) {
 		super();
 		this.coffeeGrinderService = coffeeGrinderService;
 		this.coffeeMachineService = coffeeMachineService;
+		this.dishwasherService = dishwasherService;
 	}
 
 	@Override
@@ -29,7 +32,7 @@ public class CoffeeServiceImpl implements CoffeeService {
 			coffeePowder = makeCoffeeAndAtTheSameTimeGrindBeansForTheNext(coffeePowder);
 		}
 		long endTime = System.currentTimeMillis();
-		
+		dishwasherService.startDishwasher();
 		log.info("Took {} seconds to brew {} coffees",
 		 (endTime-startTime)/1000,numberOfCoffees);
 	}
